@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponnoy Bazar | অনলাইন শপিং মল</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>Ponnoy <span>Bazar</span></h1>
+            </div>
+            
+            <!-- নতুন যুক্ত করা সার্চ বার -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#products">পণ্যসমূহ</a></li>
+                    <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#contact">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('hero-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="hero-content">
+            <h2>সেরা পণ্য, সঠিক মূল্য</h2>
+            <p>আপনার নিত্যদিনের পছন্দের সব ট্রেন্ডি পোশাক, আধুনিক ইলেকট্রনিক্স এবং প্রয়োজনীয় মানসম্মত পণ্য পেয়ে যাবেন এক জায়গাতেই।</p>
+            <a href="#products" class="btn">এখনই কিনুন <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <h2 class="section-title">আমাদের <span>পণ্যসমূহ</span></h2>
+        
+        <!-- সার্চের সময় কোনো পণ্য না পাওয়া গেলে এই মেসেজটি দেখাবে (ডিফল্টভাবে হাইড থাকবে) -->
+        <p id="no-product-msg" style="display: none; text-align: center; font-size: 18px; color: red; margin-top: 20px; width: 100%;">কোনো পণ্য পাওয়া যায়নি!</p>
+
+        <!-- 1 Number Product -->
+        <div class="product-grid" id="productGrid">
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('Rainbow মাল্টিকালার ও কুঁচি ডিজাইন', 500, 'images/rainbow.jpg')">
+                    <img src="images/rainbow.jpg" alt="মধু">
+                </div>
+                <div class="product-info">
+                    <h3>Rainbow<p>মাল্টিকালার ও কুঁচি ডিজাইন</p></h3>
+                    <p class="price">৳ ৫০০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Rainbow মাল্টিকালার ও কুঁচি ডিজাইন', 500)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+        <!-- 2 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('Floral মাল্টিকালার ও কুঁচি ডিজাইন', 450, 'images/Floral.jpg')">
+                    <img src="images/Floral.jpg" alt="সরিষার তেল">
+                </div>
+                <div class="product-info">
+                    <h3>Floral<p>মাল্টিকালার ও কুঁচি ডিজাইন</p></h3>
+                    <p class="price">৳ 450</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Floral মাল্টিকালার ও কুঁচি ডিজাইন', 450)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+        <!-- 3 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('Tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650, 'images/tropical.jpg')">
+                    <img src="images/tropical.jpg" alt="বাসমতি চাল">
+                </div>
+                <div class="product-info">
+                    <h3>Tropical<p>টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক</p></h3>
+                    <p class="price">৳ ৬৫০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+        <!-- 4 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('টাটকা মিক্সড ড্রাই ফ্রুটস', 380, 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500')">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" alt="ড্রাই ফ্রুটস">
+                </div>
+                <div class="product-info">
+                    <h3>টাটকা মিক্সড ড্রাই ফ্রুটস</h3>
+                    <p class="price">৳ ৩৮০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('টাটকা মিক্সড ড্রাই ফ্রুটস', 380)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>আপনার কার্ট</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        
+        <div id="cart-items" class="cart-items">
+            <p class="empty-msg">আপনার কার্টটি খালি আছে।</p>
+        </div>
+        
+        <div id="checkout-form-section" style="display: none; padding: 10px; border-top: 1px solid #eee; overflow-y: auto; max-height: 50vh;">
+            <h4>ডেলিভারি ও পেমেন্ট তথ্য দিন:</h4>
+            <input type="text" id="cust-name" placeholder="আপনার নাম" required>
+            <input type="text" id="cust-phone" placeholder="মোবাইল নম্বর" required>
+            
+            <select id="cust-area" onchange="updateDeliveryCharge()" required>
+                <option value="">ডেলিভারি এলাকা নির্বাচন করুন</option>
+                <option value="inside">ঢাকার ভেতরে (৳70)</option>
+                <option value="outside">ঢাকার বাইরে (৳120)</option>
+            </select>
+            
+            <textarea id="cust-address" placeholder="পূর্ণাঙ্গ ঠিকানা লিখুন" required></textarea>
+            <textarea id="cust-note" placeholder="বিশেষ কোনো অনুরোধ বা নোট থাকলে লিখুন (ঐচ্ছিক)"></textarea>
+            
+            <label style="font-weight: bold; margin-top: 10px; display: block;">পেমেন্ট মেথড সিলেক্ট করুন:</label>
+            <div class="payment-options">
+                <label><input type="radio" name="payment" value="COD" checked onchange="togglePaymentFields()"> ক্যাশ অন ডেলিভারি</label>
+                <label><input type="radio" name="payment" value="Bkash/Nagad" onchange="togglePaymentFields()"> বিকাশ / নগদ (অগ্রিম)</label>
+            </div>
+
+            <div id="mfs-details" style="display: none; background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 14px;">
+                <p><strong>বিকাশ/নগদ (পার্সোনাল):</strong>01328397540</p>
+                <p style="color:red; font-size:12px; margin-bottom:5px;">* এই নম্বরে টাকা পাঠিয়ে নিচের বক্সে TrxID লিখুন।</p>
+                <input type="text" id="trx-id" placeholder="Transaction ID (TrxID) লিখুন">
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="bill-row"><span>পণ্যের দাম:</span> ৳<span id="sub-total">0</span></div>
+            <div class="bill-row"><span>ডেলিভারি চার্জ:</span> ৳<span id="delivery-charge">0</span></div>
+            <div class="total-price"><span>সর্বমোট বিল:</span> ৳<span id="cart-total">0</span></div>
+            
+            <button id="main-checkout-btn" class="checkout-btn" onclick="showCheckoutForm()">অর্ডার করতে এগিয়ে যান</button>
+            <button id="confirm-order-btn" class="checkout-btn" onclick="checkout()" style="display:none; background:#27ae60;">অর্ডার নিশ্চিত করুন</button>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProductModal()">×</span>
+            <img id="modal-product-image" src="" alt="">
+            <div class="modal-info">
+                <h2 id="modal-product-name"></h2>
+                <p id="modal-product-desc">খাঁটি ও উন্নত মানের প্রিমিয়াম পণ্য।</p>
+                <p class="price" id="modal-product-price"></p>
+                <button class="add-to-cart-btn" onclick="addCurrentProductToCart()">কার্টে যুক্ত করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- আমাদের সম্পর্কে সেকশন -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">আমাদের <span>সম্পর্কে</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Ponnoy Bazar-এ আপনাকে স্বাগতম!</h3>
+                    <p>আমরা বিশ্বাস করি আধুনিক ও স্বাচ্ছন্দ্যময় জীবনযাত্রার মূল ভিত্তি হলো নির্ভরযোগ্য ও মানসম্মত পণ্য। আর তাই আপনাদের লাইফস্টাইলকে আরও সহজ ও চমৎকার করতে সেরা সব কালেকশন নিয়ে <strong>Ponnoy Bazar</strong>-এর পথচলা।</p>
+                    <p>আমাদের মূল ফোকাস ট্রেন্ডি ও গুণগত মানসম্পন্ন পোশাক (Clothing) এবং দৈনন্দিন জীবনকে সহজ করার মতো আধুনিক ও টেকসই ইলেকট্রনিক্স (Electronics) পণ্যের ওপর। এছাড়া আপনাদের জন্য থাকছে সরাসরি নির্ভরযোগ্য উৎস থেকে সংগৃহীত কিছু বাছাইকৃত খাঁটি খাদ্যসামগ্রীও।
+
+শতভাগ সততা, সঠিক মূল্য এবং নিখুঁত কোয়ালিটি বজায় রেখে হোম ডেলিভারির মাধ্যমে আপনার পছন্দের পণ্যটি দোরগোড়ায় পৌঁছে দিতে আমরা সর্বদা প্রতিশ্রুতিবদ্ধ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- যোগাযোগ সেকশন -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info-box">
+                    <h3>যোগাযোগের ঠিকানা</h3>
+                    <p>যেকোনো জিজ্ঞাসা, মতামত বা সরাসরি অর্ডার করতে আমাদের সাথে যোগাযোগ করুন।</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>01518419221 (Customer Support: 9:00 AM - 10:00 PM)</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>cubcuddle99@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-facebook-f"></i>
+                        <span><a href="https://www.facebook.com/Ponnyobazar" target="_blank">facebook.com/Ponnyobazar</a></span>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <form action="#" method="POST">
+                        <input type="text" placeholder="আপনার নাম" required>
+                        <input type="email" placeholder="আপনার ইমেইল (ঐচ্ছিক)">
+                        <input type="text" placeholder="মোবাইল নম্বর" required>
+                        <textarea placeholder="আপনার মেসেজ বা মতামত এখানে লিখুন..." required></textarea>
+                        <button type="submit" class="btn">মেসেজ পাঠান</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <strong><b>Ponnoy Bazar</b></strong>. All rights reserved</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/Ponnyobazar" target="_blank" title="আমাদের ফেসবুক পেজ">
+                <i class="fab fa-facebook"></i> 
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
