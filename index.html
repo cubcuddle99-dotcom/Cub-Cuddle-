@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponnoy Bazar | অনলাইন শপিং মল</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           ১. বেসিক এবং গ্লোবাল স্টাইল
+        ========================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* ==========================================
+           ২. হেডার ও নেভিগেশন বার
+        ========================================== */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: #27ae60;
+            white-space: nowrap;
+        }
+
+        .logo h1 span {
+            color: #e67e22;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f1f2f6;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 6px 15px;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: #27ae60;
+            background: #fff;
+            box-shadow: 0 0 5px rgba(39, 174, 96, 0.2);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            color: #333;
+            padding-right: 10px;
+        }
+
+        .search-box button {
+            border: none;
+            background: transparent;
+            color: #777;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .search-box button:hover {
+            color: #27ae60;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            white-space: nowrap;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #27ae60;
+        }
+
+        .nav-icons {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon i {
+            font-size: 22px;
+            color: #333;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        /* ==========================================
+           ৩. হিরো সেকশন
+        ========================================== */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg') no-repeat center center/cover;
+            height: 45vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #219150;
+        }
+
+        /* ==========================================
+           ৪. প্রোডাক্ট সেকশন
+        ========================================== */
+        .products-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .section-title span {
+            color: #27ae60;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 15px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart-btn {
+            width: 90%;
+            margin: 0 auto;
+            padding: 10px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #219150;
+        }
+
+        /* ==========================================
+           ৫. কার্ট সাইডবার
+        ========================================== */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -360px;
+            width: 360px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: 0.4s ease;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .close-cart {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 0;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #888;
+            margin-top: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #checkout-form-section input, 
+        #checkout-form-section textarea, 
+        #checkout-form-section select {
+            width: 100%;
+            margin: 6px 0;
+            padding: 9px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin: 8px 0;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .total-price {
+            font-size: 19px;
+            font-weight: bold;
+            margin: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            color: #27ae60;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #d35400;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #ffffff;
+            padding: 60px 20px;
+            margin: 40px auto;
+            border-radius: 8px;
+            max-width: 1200px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .about-text strong {
+            color: #27ae60;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .contact-info-box, .contact-form-box {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-form-box form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form-box input, 
+        .contact-form-box textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .contact-form-box .btn {
+            background: #27ae60;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form-box .btn:hover {
+            background: #219150;
+        }
+
+        /* ====================== PRODUCT MODAL ====================== */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 92%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 32px;
+            color: #e74c3c;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #modal-product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .modal-info h2 {
+            color: #27ae60;
+            margin-bottom: 8px;
+        }
+
+        .modal-info p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* ফুটার */
+        footer {
+            background: #27ae60;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            background: #ffffff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .footer-social a i {
+            font-size: 26px;
+            color: #1877f2;
+        }
+
+        .footer-social a:hover {
+            background: #1877f2;
+            color: white;
+        }
+
+        .footer-social a:hover i {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 10px;
+            }
+            .search-box {
+                width: 100%;
+                margin: 5px 0;
+                max-width: 100%;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>Ponnoy <span>Bazar</span></h1>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#products">পণ্যসমূহ</a></li>
+                    <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#contact">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('hero-bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="hero-content">
+            <h2>সেরা পণ্য, সঠিক মূল্য</h2>
+            <p>আপনার নিত্যদিনের পছন্দের সব ট্রেন্ডি পোশাক, আধুনিক ইলেকট্রনিক্স এবং প্রয়োজনীয় মানসম্মত পণ্য পেয়ে যাবেন এক জায়গাতেই।</p>
+            <a href="#products" class="btn">এখনই কিনুন <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <h2 class="section-title">আমাদের <span>পণ্যসমূহ</span></h2>
+        
+        <p id="no-product-msg" style="display: none; text-align: center; font-size: 18px; color: red; margin-top: 20px; width: 100%;">কোনো পণ্য পাওয়া যায়নি!</p>
+
+        <div class="product-grid" id="productGrid">
+            <!-- 1 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('rainbow মাল্টিকালার ও কুঁচি ডিজাইন', 500, 'images/rainbow.jpg')">
+                    <img src="images/rainbow.jpg" alt="মধু">
+                </div>
+                <div class="product-info">
+                    <h3>Rainbow<p>মাল্টিকালার ও কুঁচি ডিজাইন</p></h3>
+                    <p class="price">৳ ৫০০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('rainbow মাল্টিকালার ও কুঁচি ডিজাইন', 500)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+            <!-- 2 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('floral মাল্টিকালার ও কুঁচি ডিজাইন', 450, 'images/floral.jpg')">
+                    <img src="images/floral.jpg" alt="সরিষার তেল">
+                </div>
+                <div class="product-info">
+                    <h3>Floral<p>মাল্টিকালার ও কুঁচি ডিজাইন</p></h3>
+                    <p class="price">৳ 450</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('floral মাল্টিকালার ও কুঁচি ডিজাইন', 450)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+            <!-- 3 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650, 'images/tropical.jpg')">
+                    <img src="images/tropical.jpg" alt="বাসমতি চাল">
+                </div>
+                <div class="product-info">
+                    <h3>Tropical<p>টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক</p></h3>
+                    <p class="price">৳ ৬৫০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+            <!-- 4 Number Product -->
+            <div class="product-card">
+                <div class="product-img" onclick="showProductModal('tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650, 'images/tropical.jpg')">
+                    <img src="images/tropical.jpg" alt="বাসমতি চাল">
+                </div>
+                <div class="product-info">
+                    <h3>Tropical<p>টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক</p></h3>
+                    <p class="price">৳ ৬৫০</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('tropical টিয়া/ফিরোজা রঙের বেল্টসহ ফ্রক', 650)">কার্টে যুক্ত করুন</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>আপনার কার্ট</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        
+        <div id="cart-items" class="cart-items">
+            <p class="empty-msg">আপনার কার্টটি খালি আছে।</p>
+        </div>
+        
+        <div id="checkout-form-section" style="display: none; padding: 10px; border-top: 1px solid #eee; overflow-y: auto; max-height: 50vh;">
+            <h4>ডেলিভারি ও পেমেন্ট তথ্য দিন:</h4>
+            <input type="text" id="cust-name" placeholder="আপনার নাম" required>
+            <input type="text" id="cust-phone" placeholder="মোবাইল নম্বর" required>
+            
+            <select id="cust-area" onchange="updateDeliveryCharge()" required>
+                <option value="">ডেলিভারি এলাকা নির্বাচন করুন</option>
+                <option value="inside">ঢাকার ভেতরে (৳70)</option>
+                <option value="outside">ঢাকার বাইরে (৳120)</option>
+            </select>
+            
+            <textarea id="cust-address" placeholder="পূর্ণাঙ্গ ঠিকানা লিখুন" required></textarea>
+            <textarea id="cust-note" placeholder="বিশেষ কোনো অনুরোধ বা নোট থাকলে লিখুন (ঐচ্ছিক)"></textarea>
+            
+            <label style="font-weight: bold; margin-top: 10px; display: block;">পেমেন্ট মেথড সিলেক্ট করুন:</label>
+            <div class="payment-options">
+                <label><input type="radio" name="payment" value="COD" checked onchange="togglePaymentFields()"> ক্যাশ অন ডেলিভারি</label>
+                <label><input type="radio" name="payment" value="Bkash/Nagad" onchange="togglePaymentFields()"> বিকাশ / নগদ (অগ্রিম)</label>
+            </div>
+
+            <div id="mfs-details" style="display: none; background: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 14px;">
+                <p><strong>বিকাশ/নগদ (পার্সোনাল):</strong> 01328397540</p>
+                <p style="color:red; font-size:12px; margin-bottom:5px;">* এই নম্বরে টাকা পাঠিয়ে নিচের বক্সে TrxID লিখুন।</p>
+                <input type="text" id="trx-id" placeholder="Transaction ID (TrxID) লিখুন">
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="bill-row"><span>পণ্যের দাম:</span> ৳<span id="sub-total">0</span></div>
+            <div class="bill-row"><span>ডেলিভারি চার্জ:</span> ৳<span id="delivery-charge">0</span></div>
+            <div class="total-price"><span>সর্বমোট বিল:</span> ৳<span id="cart-total">0</span></div>
+            
+            <button id="main-checkout-btn" class="checkout-btn" onclick="showCheckoutForm()">অর্ডার করতে এগিয়ে যান</button>
+            <button id="confirm-order-btn" class="checkout-btn" onclick="checkout()" style="display:none; background:#27ae60;">অর্ডার নিশ্চিত করুন</button>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProductModal()">×</span>
+            <img id="modal-product-image" src="" alt="">
+            <div class="modal-info">
+                <h2 id="modal-product-name"></h2>
+                <p id="modal-product-desc">খাঁটি ও উন্নত মানের প্রিমিয়াম পণ্য।</p>
+                <p class="price" id="modal-product-price"></p>
+                <button class="add-to-cart-btn" onclick="addCurrentProductToCart()">কার্টে যুক্ত করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- আমাদের সম্পর্কে সেকশন -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">আমাদের <span>সম্পর্কে</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Ponnoy Bazar-এ আপনাকে স্বাগত জানানোর অনুভূতি দারুণ!</h3>
+                    <p>আমরা বিশ্বাস করি আধুনিক ও স্বাচ্ছন্দ্যময় জীবনযাত্রার মূল ভিত্তি হলো নির্ভরযোগ্য ও মানসম্মত পণ্য। আর তাই আপনাদের লাইফস্টাইলকে আরও সহজ ও চমৎকার করতে সেরা সব কালেকশন নিয়ে <strong>Ponnoy Bazar</strong>-এর পথচলা।</p>
+                    <p>আমাদের মূল ফোকাস ট্রেন্ডি ও গুণগত মানসম্পন্ন পোশাক (Clothing) এবং দৈনন্দিন জীবনকে সহজ করার মতো আধুনিক ও টেকসই ইলেকট্রনিক্স (Electronics) পণ্যের ওপর। এছাড়া আপনাদের জন্য থাকছে সরাসরি নির্ভরযোগ্য উৎস থেকে সংগৃহীত কিছু বাছাইকৃত খাঁটি খাদ্যসামগ্রীও।
+                    শতভাগ সততা, সঠিক মূল্য এবং নিখুঁত কোয়ালিটি বজায় রেখে হোম ডেলিভারির মাধ্যমে আপনার পছন্দের পণ্যটি দোরগোড়ায় পৌঁছে দিতে আমরা সর্বদা প্রতিশ্রুতিবদ্ধ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- যোগাযোগ সেকশন -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info-box">
+                    <h3>যোগাযোগের ঠিকানা</h3>
+                    <p>যেকোনো জিজ্ঞাসা, মতামত বা সরাসরি অভিযোগ করতে আমাদের সাথে যোগাযোগ করুন। আপনার প্রতিটি মতামত আমাদের কাছে মূল্যবান।</p>
+                    
+                    <div class="info-item" style="margin: 10px 0;"><i class="fas fa-phone-alt"></i> <span> 01518419221 (Customer Support)</span></div>
+                    <div class="info-item" style="margin: 10px 0;"><i class="fas fa-envelope"></i> <span> cubcuddle99@gmail.com</span></div>
+                    <div class="info-item" style="margin: 10px 0;"><i class="fab fa-facebook-f"></i> <span> <a href="https://www.facebook.com/Ponnyobazar" target="_blank">facebook.com/Ponnyobazar</a></span></div>
+                </div>
+
+                <div class="contact-form-box">
+                    <form action="#" method="POST" id="complaintForm">
+                        <input type="text" id="contact-name" placeholder="আপনার নাম" required>
+                        <input type="email" id="contact-email" placeholder="আপনার ইমেইল (ঐচ্ছিক)">
+                        <input type="text" id="contact-phone" placeholder="মোবাইল নম্বর" required>
+                        <textarea id="contact-message" placeholder="আপনার অভিযোগ, মেসেজ বা মতামত এখানে বিস্তারিত লিখুন..." required></textarea>
+                        <button type="submit" class="btn" id="contact-submit-btn">মেসেজ/অভিযোগ পাঠান</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <strong><b>Ponnoy Bazar</b></strong>. All rights reserved</p>
+        <div class="footer-social" style="margin-top: 10px;">
+            <a href="https://www.facebook.com/Ponnyobazar" target="_blank" title="আমাদের ফেসবুক পেজ">
+                <i class="fab fa-facebook"></i> 
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // ================== গুগল অ্যাপস স্ক্রিপ্ট URL ==================
+        // এখানে আপনার গুগল স্ক্রিপ্ট (Web App URL) বসাবেন
+        const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyvlnMvRd1Egw-X0WGuRnV2yUiAoL-6tmyQSK1k_4lGWzfMtMbWhnqcpUc07gGl9MAJ6w/exec"; 
+
+        let cart = [];
+        let deliveryCharge = 0;
+
+        // ================== লাইভ প্রোডাক্ট সার্চ ফাংশন ==================
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const productGrid = document.getElementById('productGrid');
+            const productCards = productGrid.getElementsByClassName('product-card');
+            const noProductMsg = document.getElementById('no-product-msg');
+            
+            let foundProduct = false;
+
+            for (let i = 0; i < productCards.length; i++) {
+                const productName = productCards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+
+                if (productName.includes(searchTerm)) {
+                    productCards[i].style.display = "";
+                    foundProduct = true;
+                } else {
+                    productCards[i].style.display = "none";
+                }
+            }
+
+            if (foundProduct) {
+                noProductMsg.style.display = "none";
+            } else {
+                noProductMsg.style.display = "block";
+            }
+        });
+
+        // ================== PRODUCT MODAL ==================
+        let currentProduct = null;
+
+        function showProductModal(name, price, imgSrc) {
+            currentProduct = { name: name, price: price, imgSrc: imgSrc };
+            
+            document.getElementById('modal-product-image').src = imgSrc;
+            document.getElementById('modal-product-name').textContent = name;
+            document.getElementById('modal-product-price').textContent = `৳ ${price}`;
+            
+            document.getElementById('product-modal').style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+
+        function addCurrentProductToCart() {
+            if (currentProduct) {
+                addToCart(currentProduct.name, currentProduct.price);
+                closeProductModal();
+            }
+        }
+
+        // ================== কার্ট ফাংশন ==================
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addToCart(pName, pPrice) {
+            const existingItem = cart.find(item => item.name === pName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: pName, price: pPrice, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const subTotalContainer = document.getElementById('sub-total');
+            
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.innerText = totalItems;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-msg">আপনার কার্টটি খালি আছে।</p>';
+                subTotalContainer.innerText = '0';
+                document.getElementById('delivery-charge').innerText = '0';
+                document.getElementById('cart-total').innerText = '0';
+                resetCheckoutForm();
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            let subTotal = 0;
+            
+            cart.forEach((item, index) => {
+                subTotal += item.price * item.quantity;
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `
+                    <div>
+                        <h4>${item.name}</h4>
+                        <small>${item.price}৳ × ${item.quantity}</small>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#e74c3c; cursor:pointer;"><i class="fas fa-trash"></i></button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            subTotalContainer.innerText = subTotal;
+            calculateTotal(subTotal);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateDeliveryCharge() {
+            const area = document.getElementById('cust-area').value;
+            if (area === "inside") {
+                deliveryCharge = 70;
+            } else if (area === "outside") {
+                deliveryCharge = 120;
+            } else {
+                deliveryCharge = 0;
+            }
+            document.getElementById('delivery-charge').innerText = deliveryCharge;
+            
+            const subTotal = parseInt(document.getElementById('sub-total').innerText) || 0;
+            calculateTotal(subTotal);
+        }
+
+        function calculateTotal(subTotal) {
+            const finalTotal = subTotal + deliveryCharge;
+            document.getElementById('cart-total').innerText = finalTotal;
+        }
+
+        function togglePaymentFields() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const mfsDetails = document.getElementById('mfs-details');
+            if (paymentMethod === "Bkash/Nagad") {
+                mfsDetails.style.display = 'block';
+            } else {
+                mfsDetails.style.display = 'none';
+                document.getElementById('trx-id').value = '';
+            }
+        }
+
+        function showCheckoutForm() {
+            if (cart.length === 0) { 
+                alert('আপনার কার্টটি খালি!'); 
+                return; 
+            }
+            document.getElementById('checkout-form-section').style.display = 'block';
+            document.getElementById('main-checkout-btn').style.display = 'none';
+            document.getElementById('confirm-order-btn').style.display = 'block';
+        }
+
+        function resetCheckoutForm() {
+            document.getElementById('checkout-form-section').style.display = 'none';
+            document.getElementById('main-checkout-btn').style.display = 'block';
+            document.getElementById('confirm-order-btn').style.display = 'none';
+        }
+
+        function generateOrderId() {
+            const randomNumber = Math.floor(1000 + Math.random() * 9000);
+            return `#PB-${randomNumber}`;
+        }
+
+        function checkout() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const areaSelect = document.getElementById('cust-area');
+            const areaText = areaSelect.options[areaSelect.selectedIndex].text;
+            const address = document.getElementById('cust-address').value.trim();
+            const note = document.getElementById('cust-note').value.trim();
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const trxId = document.getElementById('trx-id').value.trim();
+            const totalBill = document.getElementById('cart-total').innerText;
+
+            if (!name || !phone || !areaSelect.value || !address) {
+                alert('অনুগ্রহ করে নাম, ফোন, এলাকা এবং ঠিকানা সঠিকভাবে পূরণ করুন।');
+                return;
+            }
+
+            if (paymentMethod === "Bkash/Nagad" && !trxId) {
+                alert('বিকাশ/নগদ সিলেক্ট করলে অবশ্যই TrxID দিতে হবে।');
+                return;
+            }
+
+            const orderId = generateOrderId();
+            let productDetails = cart.map(item => `${item.name} (${item.quantity}টি)`).join(', ');
+
+            const confirmBtn = document.getElementById('confirm-order-btn');
+            confirmBtn.innerText = "অর্ডার হচ্ছে...";
+            confirmBtn.disabled = true;
+
+            const orderData = {
+                formType: "order",
+                orderId: orderId,
+                name: name,
+                phone: phone,
+                area: areaText,
+                address: address,
+                products: productDetails,
+                totalBill: totalBill,
+                paymentMethod: paymentMethod,
+                trxId: trxId ? trxId : "N/A",
+                note: note || "কোনো নোট নেই"
+            };
+
+            if (googleScriptUrl && googleScriptUrl.includes("script.google.com")) {
+                fetch(googleScriptUrl, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                 body: JSON.stringify(orderData)
+                })
+                .then(() => {
+                    alertSuccess(orderId);
+                })
+                .catch(error => {
+                    console.error("Fetch Error:", error);
+                    alertSuccess(orderId);
+                });
+            } else {
+                alertSuccess(orderId);
+            }
+        }
+
+        function alertSuccess(orderId) {
+            alert(`ধন্যবাদ! আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে।\n\nআপনার অর্ডার আইডি: ${orderId}\nদয়া করে আইডিটি নোট করে রাখুন।`);
+            cart = [];
+            updateCartUI();
+            toggleCart();
+            resetCheckoutForm();
+        }
+
+        // ================== নতুন যুক্ত করা যোগাযোগ/অভিযোগ সাবমিট হ্যান্ডলার ==================
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const cName = document.getElementById('contact-name').value.trim();
+            const cEmail = document.getElementById('contact-email').value.trim();
+            const cPhone = document.getElementById('contact-phone').value.trim();
+            const cMessage = document.getElementById('contact-message').value.trim();
+            const submitBtn = document.getElementById('contact-submit-btn');
+
+            if (!cName || !cPhone || !cMessage) {
+                alert('অনুগ্রহ করে নাম, মোবাইল নম্বর এবং আপনার অভিযোগ/বার্তা সঠিকভাবে লিখুন।');
+                return;
+            }
+
+            submitBtn.innerText = "পাঠানো হচ্ছে...";
+            submitBtn.disabled = true;
+
+            const contactData = {
+                formType: "contact",
+                name: cName,
+                email: cEmail || "N/A",
+                phone: cPhone,
+                message: cMessage
+            };
+
+            if (googleScriptUrl && googleScriptUrl.includes("script.google.com")) {
+                fetch(googleScriptUrl, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(contactData)
+                })
+                .then(() => {
+                    alertContactSuccess(this, submitBtn);
+                })
+                .catch(error => {
+                    console.error("Fetch Error:", error);
+                    alertContactSuccess(this, submitBtn);
+                });
+            } else {
+                alert("গুগল স্ক্রিপ্ট URL সেট করা নেই! তবে আপনার ফর্মটি টেস্ট রান হয়েছে।");
+                this.reset();
+                submitBtn.innerText = "মেসেজ/অভিযোগ পাঠান";
+                submitBtn.disabled = false;
+            }
+        });
+
+        function alertContactSuccess(formElement, submitBtn) {
+            alert('ধন্যবাদ! আপনার অভিযোগ বা মতামতটি আমাদের কাছে সফলভাবে পৌঁছেছে। আমরা দ্রুত আপনার সাথে যোগাযোগ করব।');
+            formElement.reset();
+            submitBtn.innerText = "মেসেজ/অভিযোগ পাঠান";
+            submitBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>
