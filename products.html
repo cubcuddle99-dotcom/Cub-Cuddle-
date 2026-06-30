@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Ponnoy Bazar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="container">
+  <span>🚚 ফ্রি ডেলিভারি ঢাকার ভিতরে ১০০০৳+ অর্ডারে</span>
+  <a href="contact.html">Need help? Contact us →</a>
+</div></div>
+
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="dot"></span>Ponnoy <span class="serif" style="color:var(--marigold-dark)">Bazar</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <form class="nav-search" data-nav-search>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Search products..." id="top-search">
+    </form>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle title="Toggle theme"><span data-theme-icon></span></button>
+      <a class="icon-btn" href="login.html" data-user-state><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 21a8 8 0 10-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/></svg></a>
+      <button class="icon-btn" data-open-cart title="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 3h2l.4 2M7 13h10l3-8H5.6M7 13L5.4 5M7 13l-1.5 4h11M9 21a1 1 0 100-2 1 1 0 000 2zM18 21a1 1 0 100-2 1 1 0 000 2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </button>
+      <button class="burger" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="serif">All Products</h2>
+        <p id="result-count">Browse our full collection</p>
+      </div>
+    </div>
+    <div class="chip-row" id="cat-filters"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="container">
+    <div class="grid" id="product-grid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div>
+      <h4 style="color:var(--marigold)">Ponnoy Bazar</h4>
+      <p>Your Trusted Online Shopping Destination. Food ছাড়া প্রায় সব ধরনের পণ্য, ভালো মানে ও সঠিক দামে।</p>
+      <div class="social-row">
+        <a href="https://facebook.com/Ponnyobazar" target="_blank">FB</a>
+        <a href="https://wa.me/8801328397540" target="_blank">WA</a>
+        <a href="mailto:cubcuddle99@gmail.com">@</a>
+      </div>
+    </div>
+    <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Customer Support</h4><ul><li><a href="contact.html">Help Center</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    <div><h4>Get in touch</h4><ul><li><a href="mailto:cubcuddle99@gmail.com">cubcuddle99@gmail.com</a></li><li><a href="https://facebook.com/Ponnyobazar" target="_blank">facebook.com/Ponnyobazar</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Ponnoy Bazar. All Rights Reserved.</div>
+</footer>
+
+<div class="overlay" id="cart-overlay"></div>
+<aside class="drawer" id="cart-drawer">
+  <div class="drawer-head"><h3 class="serif">Your Basket</h3><button class="icon-btn" data-close-cart>✕</button></div>
+  <div class="drawer-items"></div>
+  <div class="drawer-foot">
+    <div class="sum-row"><span>Subtotal</span><b data-subtotal>৳0</b></div>
+    <a href="checkout.html" class="btn btn-primary btn-block" data-checkout-link style="margin-top:10px;">Proceed to Checkout</a>
+  </div>
+</aside>
+
+<script src="app.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  let activeCat = params.get('cat') || 'All';
+  let activeQuery = params.get('q') || '';
+  document.getElementById('top-search').value = activeQuery;
+
+  const allProducts = PB.db.getProducts();
+  const categories = ['All', ...new Set(allProducts.map(p=>p.category))];
+
+  function renderFilters(){
+    document.getElementById('cat-filters').innerHTML = categories.map(c =>
+      `<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${c}</button>`
+    ).join('');
+  }
+
+  function renderGrid(){
+    let list = allProducts.filter(p => activeCat === 'All' || p.category === activeCat);
+    if(activeQuery){
+      const q = activeQuery.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+    }
+    document.getElementById('result-count').textContent = `${list.length} product${list.length!==1?'s':''} found`;
+    const grid = document.getElementById('product-grid');
+    if(list.length === 0){
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M21 21l-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>No products found</h3><p>Try a different search or category.</p></div>`;
+      return;
+    }
+    grid.innerHTML = list.map(p => `
+      <div class="card">
+        <div class="card-img">
+          ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
+          <span class="card-cat">${p.category}</span>
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <div class="price-row">
+            <span class="price">${PB.money(p.price)}</span>
+            ${p.oldPrice ? `<span class="price-old">${PB.money(p.oldPrice)}</span>` : ''}
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-dark" data-add-to-cart="${p.id}">Add to Cart</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  renderFilters();
+  renderGrid();
+
+  document.getElementById('cat-filters').addEventListener('click', e=>{
+    const btn = e.target.closest('[data-cat]');
+    if(!btn) return;
+    activeCat = btn.dataset.cat;
+    renderFilters();
+    renderGrid();
+    const url = new URL(window.location);
+    activeCat==='All' ? url.searchParams.delete('cat') : url.searchParams.set('cat', activeCat);
+    window.history.replaceState({}, '', url);
+  });
+
+  document.getElementById('top-search').addEventListener('input', e=>{
+    activeQuery = e.target.value;
+    renderGrid();
+  });
+</script>
+</body>
+</html>
